@@ -1,13 +1,18 @@
 package io.github.aretche.webapp.model;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String firstName;
     private String lastName;
 
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
     public Author() {
